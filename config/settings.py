@@ -88,9 +88,9 @@ AUTH_USER_MODEL = 'users.Member'
 # 나중에 dj_rest_auth.registration.views.SocialLoginView을 쓰기위해 추가
 REST_USE_JWT = True
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None # username 필드 사용 x
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username' # username 필드 사용 x
 ACCOUNT_EMAIL_REQUIRED = True            # email 필드 사용 o
-ACCOUNT_USERNAME_REQUIRED = False        # username 필드 사용 x
+ACCOUNT_USERNAME_REQUIRED = False       # username 필드 사용 x
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [

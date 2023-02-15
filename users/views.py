@@ -99,13 +99,13 @@ class AuthView(APIView):
 # 이 url로 들어가면 구글 로그인 창이 뜨고, 알맞은 아이디와 비밀번호를 입력하면 callback URI로 코드값이 들어간다.
 def google_login(request):
     scope = "https://www.googleapis.com/auth/userinfo.email"
-    client_id = os.environ.get("SOCIAL_AUTH_GOOGLE_CLIENT_ID")
+    client_id = '12468722310-fhi8noiubatkiksvhg440g11umn5gtnh.apps.googleusercontent.com'
     return redirect(f"https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&response_type=code&redirect_uri={GOOGLE_CALLBACK_URI}&scope={scope}")
 
 def google_callback(request):
 
-    client_id = os.environ.get("SOCIAL_AUTH_GOOGLE_CLIENT_ID")
-    client_secret = os.environ.get("SOCIAL_AUTH_GOOGLE_SECRET")
+    client_id = '12468722310-fhi8noiubatkiksvhg440g11umn5gtnh.apps.googleusercontent.com'
+    client_secret = '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'
     code = request.GET.get('code')
 
     # 1. 받은 코드로 구글에 access token 요청
@@ -184,9 +184,9 @@ def google_callback(request):
 
         return JsonResponse(accept_json)
         
-    #except SocialAccount.DoesNotExist:
+    except SocialAccount.DoesNotExist:
     	#User는 있는데 SocialAccount가 없을 때 (=일반회원으로 가입된 이메일일때)
-     #   return JsonResponse({'err_msg': 'email exists but not social user'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'err_msg': 'email exists but not social user'}, status=status.HTTP_400_BAD_REQUEST)
     
 class GoogleLogin(SocialLoginView):
     adapter_class = google_view.GoogleOAuth2Adapter

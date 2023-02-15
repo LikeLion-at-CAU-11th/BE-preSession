@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('posts.urls')),
     path('users/', include('users.urls')),
-    path('users/', include('dj_rest_auth.urls')),
-    path('users/', include('allauth.urls')),
+    #path('users/', include('dj_rest_auth.urls')),
+    #path('users/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
